@@ -1,63 +1,78 @@
 ﻿using System;
+using System.Collections.Generic;
 
-namespace Ejercicio4
+namespace Ejercicio5
 {
-    // Creamos la Clase abstracta
-    public abstract class Figura
+    // Interfaz Animali
+    public interface Animali
     {
-        // Método abstracto que debe implementarse en las clases hijas
-        public abstract double CalcularArea();
+        string Nombre { get; set; }
+        void HacerSonido();
     }
 
-    // Clase Triangulo
-    public class Triangulo : Figura
+    // Clase Gato
+    public class Gato : Animali
     {
-        public double Base { get; set; }
-        public double Altura { get; set; }
+        public string Nombre { get; set; }
 
-        public Triangulo(double baseTriangulo, double altura)
+        public Gato(string nombre)
         {
-            Base = baseTriangulo;
-            Altura = altura;
+            Nombre = nombre;
         }
 
-        public override double CalcularArea()
+        public void HacerSonido()
         {
-            return (Base * Altura) / 2;
+            Console.WriteLine("Miau Miau!");
         }
     }
 
-
-    // Procedemos a crear la Clase Cuadrado
-    public class Cuadrado : Figura
+    // Clase Perro
+    public class Perro : Animali
     {
-        public double Lado { get; set; }
+        public string Nombre { get; set; }
 
-        public Cuadrado(double lado)
+        public Perro(string nombre)
         {
-            Lado = lado;
+            Nombre = nombre;
         }
 
-        public override double CalcularArea()
+        public void HacerSonido()
         {
-            return Lado * Lado;
+            Console.WriteLine("Guau Guau!");
         }
     }
 
    
 
-    // Programa principal
-    class Areas
+    class Sonidos
     {
         static void Main(string[] args)
         {
-            // Crear un cuadrado de lado 5
-            Cuadrado cuadrado = new Cuadrado(5);
-            Console.WriteLine("El Área del cuadrado es: " + cuadrado.CalcularArea());
+            // Crear lista de IAnimal
+            List<Animali> animales = new List<Animali>();
 
-            // Crear un triángulo de base 6 y altura 4
-            Triangulo triangulo = new Triangulo(6, 4);
-            Console.WriteLine("El Área del triángulo es: " + triangulo.CalcularArea());
+
+            // Agregar 4 gatos
+            animales.Add(new Gato("Ramiro"));
+            animales.Add(new Gato("Tigre"));
+            animales.Add(new Gato("Peludo"));
+            animales.Add(new Gato("Simba"));
+
+            // Agregar 4 perros
+            animales.Add(new Perro("Sami"));
+            animales.Add(new Perro("Max"));
+            animales.Add(new Perro("Tobby"));
+            animales.Add(new Perro("Tostada"));
+
+
+            // Recorrer la lista e imprimir nombre y sonido
+            foreach (Animali animal in animales)
+            {
+                Console.WriteLine("Animal: " + animal.Nombre);
+                Console.Write("Sonido: ");
+                animal.HacerSonido();
+                Console.WriteLine(); // Salto de línea extra
+            }
         }
     }
 }
