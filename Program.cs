@@ -1,46 +1,63 @@
 ﻿using System;
 
-namespace Ejercicio3
+namespace Ejercicio4
 {
-    // Se crea Clase Calculadora
-    public class Calculadora
+    // Creamos la Clase abstracta
+    public abstract class Figura
     {
-        // Procemos a Sumar dos enteros
-        public int Sumar(int a, int b)
+        // Método abstracto que debe implementarse en las clases hijas
+        public abstract double CalcularArea();
+    }
+
+    // Clase Triangulo
+    public class Triangulo : Figura
+    {
+        public double Base { get; set; }
+        public double Altura { get; set; }
+
+        public Triangulo(double baseTriangulo, double altura)
         {
-            return a + b;
+            Base = baseTriangulo;
+            Altura = altura;
         }
 
-        // Procedemos a Sumar tres enteros
-        public int Sumar(int a, int b, int c)
+        public override double CalcularArea()
         {
-            return a + b + c;
-        }
-
-        // Procedemos a Sumar dos números double
-        public double Sumar(double a, double b)
-        {
-            return a + b;
+            return (Base * Altura) / 2;
         }
     }
 
-    class Calculadora1
+
+    // Procedemos a crear la Clase Cuadrado
+    public class Cuadrado : Figura
+    {
+        public double Lado { get; set; }
+
+        public Cuadrado(double lado)
+        {
+            Lado = lado;
+        }
+
+        public override double CalcularArea()
+        {
+            return Lado * Lado;
+        }
+    }
+
+   
+
+    // Programa principal
+    class Areas
     {
         static void Main(string[] args)
         {
-            Calculadora calcu = new Calculadora();
+            // Crear un cuadrado de lado 5
+            Cuadrado cuadrado = new Cuadrado(5);
+            Console.WriteLine("El Área del cuadrado es: " + cuadrado.CalcularArea());
 
-            // Procedemos a imprimir el resultado de la Suma de dos enteros
-            int r1 = calcu.Sumar(5, 10);
-            Console.WriteLine("Suma de 5 + 10 = " + r1);
-
-            // Procedemos a imprimir el resultado de la Suma de tres enteros
-            int r2 = calcu.Sumar(3, 7, 2);
-            Console.WriteLine("Suma de 3 + 7 + 2 = " + r2);
-
-            // Procedemos a imprimir el resultado de la Suma de dos doubles
-            double r3 = calcu.Sumar(4.5, 3.2);
-            Console.WriteLine("Suma de 4.5 + 3.2 = " + r3);
+            // Crear un triángulo de base 6 y altura 4
+            Triangulo triangulo = new Triangulo(6, 4);
+            Console.WriteLine("El Área del triángulo es: " + triangulo.CalcularArea());
         }
     }
 }
