@@ -1,94 +1,46 @@
-﻿
+﻿using System;
 
-
-namespace Ejercicio1
+namespace Ejercicio3
 {
-    public class CuentaBancaria
+    // Se crea Clase Calculadora
+    public class Calculadora
     {
-        private int saldo; //Se crea el atributo privado
-
-        public void Depositar(int cantidad) //Creamos la operacion para depositar
+        // Procemos a Sumar dos enteros
+        public int Sumar(int a, int b)
         {
-            if (cantidad > 0)
-            {
-                saldo += cantidad;
-                Console.WriteLine("Su depósito ha sido exitoso. Saldo actual: " + saldo);
-            }
-            else
-            {
-                Console.WriteLine("La cantidad a depositar tiene que ser mayor que cero.");
-            }
+            return a + b;
         }
 
-        public void Retirar(int cantidad) // Creamos la operacion para retirar
+        // Procedemos a Sumar tres enteros
+        public int Sumar(int a, int b, int c)
         {
-            if (cantidad > saldo)
-            {
-                Console.WriteLine("Fondos insuficientes.");
-            }
-            else if (cantidad > 0)
-            {
-                saldo -= cantidad;
-                Console.WriteLine("Su retiro ha sido exitoso. Saldo actual: " + saldo);
-            }
-            else
-            {
-                Console.WriteLine("La cantidad a retirar tiene que ser mayor que cero.");
-            }
+            return a + b + c;
         }
 
-        public int ObtenerSaldo()
+        // Procedemos a Sumar dos números double
+        public double Sumar(double a, double b)
         {
-            return saldo;
+            return a + b;
         }
     }
 
-    class Eje1
+    class Calculadora1
     {
         static void Main(string[] args)
         {
-            CuentaBancaria cuenta = new CuentaBancaria();
-            int opcion;
+            Calculadora calcu = new Calculadora();
 
-            do
-            {
-                Console.WriteLine("\n MENÚ ");
-                Console.WriteLine("1. Depositar");
-                Console.WriteLine("2. Retirar");
-                Console.WriteLine("3. Consultar saldo");
-                Console.WriteLine("4. Salir");
-                Console.Write("Elija una opción: ");
+            // Procedemos a imprimir el resultado de la Suma de dos enteros
+            int r1 = calcu.Sumar(5, 10);
+            Console.WriteLine("Suma de 5 + 10 = " + r1);
 
-                opcion = int.Parse(Console.ReadLine());
+            // Procedemos a imprimir el resultado de la Suma de tres enteros
+            int r2 = calcu.Sumar(3, 7, 2);
+            Console.WriteLine("Suma de 3 + 7 + 2 = " + r2);
 
-                switch (opcion)
-                {
-                    case 1:
-                        Console.Write("Ingrese la cantidad a depositar: ");
-                        int deposito = int.Parse(Console.ReadLine());
-                        cuenta.Depositar(deposito);
-                        break;
-
-                    case 2:
-                        Console.Write("Ingrese la cantidad a retirar: ");
-                        int retiro = int.Parse(Console.ReadLine());
-                        cuenta.Retirar(retiro);
-                        break;
-
-                    case 3:
-                        Console.WriteLine("Saldo actual: " + cuenta.ObtenerSaldo());
-                        break;
-
-                    case 4:
-                        Console.WriteLine("Saliendo");
-                        break;
-
-                    default:
-                        Console.WriteLine("Opción inválida.");
-                        break;
-                }
-
-            } while (opcion != 4);
+            // Procedemos a imprimir el resultado de la Suma de dos doubles
+            double r3 = calcu.Sumar(4.5, 3.2);
+            Console.WriteLine("Suma de 4.5 + 3.2 = " + r3);
         }
     }
 }
